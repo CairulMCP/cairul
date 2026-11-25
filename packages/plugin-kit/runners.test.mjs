@@ -52,8 +52,7 @@ test('Go executes selected subtests without counting unmatched parent tests', as
     ),
   ]);
   const check = goTest().checkKinds['go-test.run'];
-  const run = (namePattern) =>
-    check.run({ select: { packages: ['.'], namePattern } }, context(directory, 120000));
+  const run = (namePattern) => check.run({ select: { packages: ['.'], namePattern } }, context(directory, 120000));
   const selected = await run('^TestNested$/^child$');
   assert.equal(selected.status, 'passed', selected.detail);
   assert.match((await run('^TestNested$/^missing$')).detail, /No selected tests matched/);
