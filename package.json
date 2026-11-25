@@ -9,7 +9,7 @@
     "prepare": "husky",
     "build": "turbo run build --filter=@cairul/mcp --filter=@cairul/sdk",
     "run:mcp": "node apps/mcp/dist/index.js",
-    "test": "turbo run test --filter=@cairul/mcp --filter=@cairul/plugin-kit",
+    "test": "turbo run test --filter=@cairul/mcp --filter=@cairul/pdk",
     "lint": "prettier --check . && eslint \"*.mjs\" scripts \"packages/**/*.mjs\" && turbo run lint",
     "format": "prettier --write .",
     "check": "pnpm lint && pnpm build && pnpm test",

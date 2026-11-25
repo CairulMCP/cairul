@@ -239,221 +239,221 @@ importers:
 
   packages/appium-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/asana-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/axe-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/azure-devops-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/bitbucket-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/clickup-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/coverage-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/ctest-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/cucumber-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/cypress-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/django-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/flutter-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/github-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/gitlab-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/go-test-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/googletest-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/gradle-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/jest-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/jira-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/junit-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/k6-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/linear-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/maven-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/minitest-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/mocha-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/monday-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/mstest-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/nextest-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/node-test-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/notion-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/nunit-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/pact-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/perforce-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/pest-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/phpunit-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/playwright-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
-  packages/plugin-kit:
+  packages/pdk:
     dependencies:
       cross-spawn:
         specifier: ^7.0.6
@@ -467,80 +467,80 @@ importers:
 
   packages/pytest-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/rspec-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/sdk: {}
 
   packages/testng-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/trello-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/unittest-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/visual-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/vitest-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/webdriverio-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/workspace-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
       yaml:
         specifier: ^2.9.1
         version: 2.9.1
 
   packages/xctest-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/xunit-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
   packages/youtrack-plugin:
     dependencies:
-      '@cairul/plugin-kit':
+      '@cairul/pdk':
         specifier: '>=0.1.0 <1.0.0'
-        version: link:../plugin-kit
+        version: link:../pdk
 
 packages:
 
@@ -681,7 +681,7 @@ packages:
     resolution: {integrity: sha512-vqTaUEgxzm+YDSdElad6PiRoX4t8VGDjCtt05zn4nU810UIx/uNEV7/lZJ6KwFThKZOzOxzXy48da+No7HZaMw==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
-  '@eslint/plugin-kit@0.7.3':
+  '@eslint/pdk@0.7.3':
     resolution: {integrity: sha512-IkO+/KEUvwbVpiURZg+P7zF74z5Jxe0UgJxVni+RtoHQ6IZieXaO02kmadomap/q+l6bc/jdPGGqTjhuZnuz1Q==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
@@ -2028,7 +2028,7 @@ snapshots:
 
   '@eslint/object-schema@3.0.5': {}
 
-  '@eslint/plugin-kit@0.7.3':
+  '@eslint/pdk@0.7.3':
     dependencies:
       '@eslint/core': 1.2.1
       levn: 0.4.1
@@ -2579,7 +2579,7 @@ snapshots:
       '@eslint/config-array': 0.23.6(supports-color@10.2.2)
       '@eslint/config-helpers': 0.7.0
       '@eslint/core': 1.2.1
-      '@eslint/plugin-kit': 0.7.3
+      '@eslint/pdk': 0.7.3
       '@humanfs/node': 0.16.8
       '@humanwhocodes/module-importer': 1.0.1
       '@humanwhocodes/retry': 0.4.3

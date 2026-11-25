@@ -9,8 +9,8 @@
     "apps/mcp": {
       "component": "mcp"
     },
-    "packages/plugin-kit": {
-      "component": "plugin-kit"
+    "packages/pdk": {
+      "component": "pdk"
     },
     "packages/sdk": {
       "component": "sdk"

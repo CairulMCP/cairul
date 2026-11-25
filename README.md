@@ -90,6 +90,8 @@ Either file can use the `.yml` extension. A check with just `name` and `command`
 
 ### Local plugins
 
+The Cairul Plugin Development Kit (PDK) provides helpers for defining checks, running tests, and reading reports. Plugin authors can install it as `@cairul/pdk`.
+
 Browse the [integration catalog](packages/README.md) for work trackers, source control, test frameworks, and report gates. Install the packages you need as project dependencies and list them in `.cairul/plugins.yaml`. Plugin-level `options` go to the factory. Check-level `options` go to the kind's validator and runner.
 
 ```yaml
@@ -156,12 +158,12 @@ The code in this repository is available under the [Apache License 2.0](LICENSE)
 
 GitHub Actions runs lint, builds, package tests, and a Trivy filesystem scan on pushes and pull requests to `main`. Trivy fails the check on high or critical dependency vulnerabilities, secrets, or configuration findings. Tests that need the internal API run when `CAIRUL_TEST_API_BIN` is set. The default GitHub workflow runs the local and mocked tests.
 
-Release Please opens a combined release PR from conventional commits on `main`. Its config and version manifest cover the MCP, SDK, and plugin kit. Each integration has its own release workflow in its plugin repository.
+Release Please opens a combined release PR from conventional commits on `main`. Its config and version manifest cover the MCP, SDK, and PDK. Each integration has its own release workflow in its plugin repository.
 
 Configure these values in the GitHub repository to enable releases.
 
 - `RELEASE_PLEASE_TOKEN` GitHub Actions secret. Use a GitHub fine-grained PAT with Contents, Pull requests, and Issues read/write access on the repositories it releases. An organization secret can supply the credential to the core and plugin repositories. This lets CI run automatically when Release Please opens or updates its PR.
 - `NPM_TOKEN` organization secret available to the repository or a secret in its `npm` GitHub environment. Use an npm granular access token with publishing access to the `@cairul` org and bypass 2FA enabled.
-- `NPM_ACCESS` repository variable (optional). The default is `public`, so standalone integrations can install the shared plugin kit.
+- `NPM_ACCESS` repository variable (optional). The default is `public`, so standalone integrations can install the shared PDK.
 
 Once the release PR is merged and its exact `main` commit passes CI, the release workflow publishes that commit's tagged packages. It packs workspace dependency references into registry-ready versions, publishes dependencies first, and skips versions already present in npm. To retry a failed publish after tags exist, rerun the failed job or dispatch the Release workflow from `main` with the original CI-approved commit SHA.

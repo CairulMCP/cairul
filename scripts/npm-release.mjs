@@ -15,7 +15,7 @@ const validVersion = /^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/;
 function checkCatalog() {
   const config = readJson(join(root, 'release-please-config.json'));
   const manifest = readJson(join(root, '.release-please-manifest.json'));
-  const paths = ['apps/mcp', 'packages/plugin-kit', 'packages/sdk'];
+  const paths = ['apps/mcp', 'packages/pdk', 'packages/sdk'];
   const packages = paths.flatMap((path) => {
     let pkg;
     try {
