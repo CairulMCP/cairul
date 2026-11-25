@@ -158,7 +158,7 @@ The code in this repository is available under the [Apache License 2.0](LICENSE)
 
 GitHub Actions runs lint, builds, package tests, and a Trivy filesystem scan on pushes and pull requests to `main`. Trivy fails the check on high or critical dependency vulnerabilities, secrets, or configuration findings. Tests that need the internal API run when `CAIRUL_TEST_API_BIN` is set. The default GitHub workflow runs the local and mocked tests.
 
-Release Please opens a combined release PR from conventional commits on `main`. Its config and version manifest cover the MCP, SDK, and PDK. Each integration has its own release workflow in its plugin repository.
+Release Please opens separate MCP, SDK, and PDK release PRs from conventional commits on `main`. Each PR bumps its own package and manifest entry. Each integration has its own release workflow in its plugin repository.
 
 Configure these values in the GitHub repository to enable releases.
 
@@ -166,4 +166,6 @@ Configure these values in the GitHub repository to enable releases.
 - `NPM_TOKEN` organization secret available to the repository or a secret in its `npm` GitHub environment. Use an npm granular access token with publishing access to the `@cairul` org and bypass 2FA enabled.
 - `NPM_ACCESS` repository variable (optional). The default is `public`, so standalone integrations can install the shared PDK.
 
-Once the release PR is merged and its exact `main` commit passes CI, the release workflow publishes that commit's tagged packages. It packs workspace dependency references into registry-ready versions, publishes dependencies first, and skips versions already present in npm. To retry a failed publish after tags exist, rerun the failed job or dispatch the Release workflow from `main` with the original CI-approved commit SHA.
+Publish the SDK version on `main` before merging an MCP release PR. The MCP depends on that exact SDK version in its npm archive, and CI checks that the SDK is available. Publish the PDK before merging standalone plugin releases.
+
+Once a release PR is merged and its exact `main` commit passes CI, the release workflow publishes that commit's tagged packages. It packs workspace dependency references into registry-ready versions, publishes dependencies first, and skips versions already present in npm. To retry a failed publish after tags exist, rerun the failed job or dispatch the Release workflow from `main` with the original CI-approved commit SHA.

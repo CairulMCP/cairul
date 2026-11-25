@@ -34,6 +34,15 @@ jobs:
       - run: pnpm lint
       - run: pnpm build
       - run: node scripts/npm-release.mjs verify
+      - name: Verify the SDK for the MCP release
+        if: github.event_name == 'pull_request' && github.head_ref == 'release-please--branches--main--components--mcp'
+        run: |
+          sdk_version="$(node -p "require('./packages/sdk/package.json').version")"
+          if ! npm view "@cairul/sdk@$sdk_version" version --registry https://registry.npmjs.org --json |
+            jq -e --arg version "$sdk_version" '. == $version' >/dev/null; then
+            echo "::error::Publish @cairul/sdk@$sdk_version to npm before merging the MCP release."
+            exit 1
+          fi
 
   tests:
     name: (${{ matrix.package }}) Tests

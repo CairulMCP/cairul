@@ -3,8 +3,8 @@
   "release-type": "node",
   "include-component-in-tag": true,
   "include-v-in-tag": true,
-  "separate-pull-requests": false,
-  "plugins": ["node-workspace"],
+  "separate-pull-requests": true,
+  "always-update": true,
   "packages": {
     "apps/mcp": {
       "component": "mcp"
