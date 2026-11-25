@@ -17,7 +17,7 @@ concurrency:
 jobs:
   publish:
     name: Publish 0.1.0 with npm provenance
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/npm-bootstrap-0.1.0'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     environment: npm
@@ -28,14 +28,14 @@ jobs:
     env:
       HUSKY: '0'
     steps:
-      - name: Verify successful main CI for this commit
+      - name: Verify successful bootstrap-branch CI for this commit
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh api -X GET "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yaml/runs" \
             -f event=push -f head_sha="$GITHUB_SHA" -F per_page=100 |
-            jq -e --arg sha "$GITHUB_SHA" '
-              any(.workflow_runs[]; .head_sha == $sha and .head_branch == "main"
+            jq -e --arg sha "$GITHUB_SHA" --arg branch "$GITHUB_REF_NAME" '
+              any(.workflow_runs[]; .head_sha == $sha and .head_branch == $branch
                 and .event == "push" and .status == "completed" and .conclusion == "success")
             ' >/dev/null
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
