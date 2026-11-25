@@ -36,5 +36,10 @@
   ],
   "engines": {
     "node": ">=24"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cairul-hq/cairul.git",
+    "directory": "apps/mcp"
   }
 }
