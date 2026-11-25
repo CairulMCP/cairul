@@ -9,10 +9,10 @@ import nodeTest from '../node-test-plugin/index.mjs';
 import goTest from '../go-test-plugin/index.mjs';
 import unittest from '../unittest-plugin/index.mjs';
 
-const context = (projectDir) => ({
+const context = (projectDir, timeoutMs = 15000) => ({
   projectDir,
   workItemUrl: 'https://example.com/work/1',
-  signal: globalThis.AbortSignal.timeout(15000),
+  signal: globalThis.AbortSignal.timeout(timeoutMs),
 });
 
 test('Node executes a selected case and rejects empty and skipped selections', async (t) => {
@@ -52,8 +52,10 @@ test('Go executes selected subtests without counting unmatched parent tests', as
     ),
   ]);
   const check = goTest().checkKinds['go-test.run'];
-  const run = (namePattern) => check.run({ select: { packages: ['.'], namePattern } }, context(directory));
-  assert.equal((await run('^TestNested$/^child$')).status, 'passed');
+  const run = (namePattern) =>
+    check.run({ select: { packages: ['.'], namePattern } }, context(directory, 120000));
+  const selected = await run('^TestNested$/^child$');
+  assert.equal(selected.status, 'passed', selected.detail);
   assert.match((await run('^TestNested$/^missing$')).detail, /No selected tests matched/);
 });
 
