@@ -240,217 +240,217 @@ importers:
   packages/appium-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/asana-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/axe-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/azure-devops-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/bitbucket-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/clickup-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/coverage-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/ctest-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/cucumber-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/cypress-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/django-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/flutter-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/github-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/gitlab-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/go-test-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/googletest-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/gradle-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/jest-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/jira-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/junit-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/k6-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/linear-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/maven-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/minitest-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/mocha-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/monday-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/mstest-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/nextest-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/node-test-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/notion-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/nunit-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/pact-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/perforce-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/pest-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/phpunit-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/playwright-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/plugin-kit:
@@ -468,13 +468,13 @@ importers:
   packages/pytest-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/rspec-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/sdk: {}
@@ -482,43 +482,43 @@ importers:
   packages/testng-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/trello-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/unittest-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/visual-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/vitest-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/webdriverio-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/workspace-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
       yaml:
         specifier: ^2.9.1
@@ -527,19 +527,19 @@ importers:
   packages/xctest-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/xunit-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
   packages/youtrack-plugin:
     dependencies:
       '@cairul/plugin-kit':
-        specifier: workspace:^
+        specifier: '>=0.1.0 <1.0.0'
         version: link:../plugin-kit
 
 packages:

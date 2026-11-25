@@ -1,6 +1,6 @@
 # Cairul integration packages
 
-Each integration is a standalone `@cairul/<name>-plugin` package. Install or link the packages you need into the project from which Cairul resolves dependencies. These packages can be built and packed from this repo. When working from a checkout, run `pnpm install` here first, then run `pnpm link /path/to/cairul/packages/vitest-plugin` in your project. `shell.command` comes with the MCP and accepts the `command:` shorthand.
+Each integration is a standalone `@cairul/<name>-plugin` package with its own repository and release pipeline. This checkout pins those repositories as Git submodules for integration testing. Install or link the packages you need into the project from which Cairul resolves dependencies. When working from a checkout, run `pnpm install` here first, then run `pnpm link /path/to/cairul/packages/vitest-plugin` in your project. `shell.command` comes with the MCP and accepts the `command:` shorthand.
 
 Declare installed packages in `.cairul/plugins.yaml`. Restart the MCP after changing the list.
 
@@ -218,3 +218,54 @@ dotnet test --logger 'trx;LogFilePrefix=results' --results-directory reports
 | `k6-plugin`       | `k6.thresholds-passed`    | JSON `report` written by `handleSummary`, with threshold evaluations in `metrics`.                                   |
 | `pact-plugin`     | `pact.can-deploy`         | `pacticipant`, `version`, and `environment`. Configure the installed Pact Broker CLI with its usual broker settings. |
 | `visual-plugin`   | `visual.pixel-diff`       | JSON `report` with `comparisons: [{differentPixels: 0}]` and optional `maximum` changed pixels per comparison.       |
+
+## Plugin repositories
+
+- [`@cairul/appium-plugin`](https://github.com/CairulMCP/cairul-appium-plugin)
+- [`@cairul/asana-plugin`](https://github.com/CairulMCP/cairul-asana-plugin)
+- [`@cairul/axe-plugin`](https://github.com/CairulMCP/cairul-axe-plugin)
+- [`@cairul/azure-devops-plugin`](https://github.com/CairulMCP/cairul-azure-devops-plugin)
+- [`@cairul/bitbucket-plugin`](https://github.com/CairulMCP/cairul-bitbucket-plugin)
+- [`@cairul/clickup-plugin`](https://github.com/CairulMCP/cairul-clickup-plugin)
+- [`@cairul/coverage-plugin`](https://github.com/CairulMCP/cairul-coverage-plugin)
+- [`@cairul/ctest-plugin`](https://github.com/CairulMCP/cairul-ctest-plugin)
+- [`@cairul/cucumber-plugin`](https://github.com/CairulMCP/cairul-cucumber-plugin)
+- [`@cairul/cypress-plugin`](https://github.com/CairulMCP/cairul-cypress-plugin)
+- [`@cairul/django-plugin`](https://github.com/CairulMCP/cairul-django-plugin)
+- [`@cairul/flutter-plugin`](https://github.com/CairulMCP/cairul-flutter-plugin)
+- [`@cairul/github-plugin`](https://github.com/CairulMCP/cairul-github-plugin)
+- [`@cairul/gitlab-plugin`](https://github.com/CairulMCP/cairul-gitlab-plugin)
+- [`@cairul/go-test-plugin`](https://github.com/CairulMCP/cairul-go-test-plugin)
+- [`@cairul/googletest-plugin`](https://github.com/CairulMCP/cairul-googletest-plugin)
+- [`@cairul/gradle-plugin`](https://github.com/CairulMCP/cairul-gradle-plugin)
+- [`@cairul/jest-plugin`](https://github.com/CairulMCP/cairul-jest-plugin)
+- [`@cairul/jira-plugin`](https://github.com/CairulMCP/cairul-jira-plugin)
+- [`@cairul/junit-plugin`](https://github.com/CairulMCP/cairul-junit-plugin)
+- [`@cairul/k6-plugin`](https://github.com/CairulMCP/cairul-k6-plugin)
+- [`@cairul/linear-plugin`](https://github.com/CairulMCP/cairul-linear-plugin)
+- [`@cairul/maven-plugin`](https://github.com/CairulMCP/cairul-maven-plugin)
+- [`@cairul/minitest-plugin`](https://github.com/CairulMCP/cairul-minitest-plugin)
+- [`@cairul/mocha-plugin`](https://github.com/CairulMCP/cairul-mocha-plugin)
+- [`@cairul/monday-plugin`](https://github.com/CairulMCP/cairul-monday-plugin)
+- [`@cairul/mstest-plugin`](https://github.com/CairulMCP/cairul-mstest-plugin)
+- [`@cairul/nextest-plugin`](https://github.com/CairulMCP/cairul-nextest-plugin)
+- [`@cairul/node-test-plugin`](https://github.com/CairulMCP/cairul-node-test-plugin)
+- [`@cairul/notion-plugin`](https://github.com/CairulMCP/cairul-notion-plugin)
+- [`@cairul/nunit-plugin`](https://github.com/CairulMCP/cairul-nunit-plugin)
+- [`@cairul/pact-plugin`](https://github.com/CairulMCP/cairul-pact-plugin)
+- [`@cairul/perforce-plugin`](https://github.com/CairulMCP/cairul-perforce-plugin)
+- [`@cairul/pest-plugin`](https://github.com/CairulMCP/cairul-pest-plugin)
+- [`@cairul/phpunit-plugin`](https://github.com/CairulMCP/cairul-phpunit-plugin)
+- [`@cairul/playwright-plugin`](https://github.com/CairulMCP/cairul-playwright-plugin)
+- [`@cairul/pytest-plugin`](https://github.com/CairulMCP/cairul-pytest-plugin)
+- [`@cairul/rspec-plugin`](https://github.com/CairulMCP/cairul-rspec-plugin)
+- [`@cairul/testng-plugin`](https://github.com/CairulMCP/cairul-testng-plugin)
+- [`@cairul/trello-plugin`](https://github.com/CairulMCP/cairul-trello-plugin)
+- [`@cairul/unittest-plugin`](https://github.com/CairulMCP/cairul-unittest-plugin)
+- [`@cairul/visual-plugin`](https://github.com/CairulMCP/cairul-visual-plugin)
+- [`@cairul/vitest-plugin`](https://github.com/CairulMCP/cairul-vitest-plugin)
+- [`@cairul/webdriverio-plugin`](https://github.com/CairulMCP/cairul-webdriverio-plugin)
+- [`@cairul/workspace-plugin`](https://github.com/CairulMCP/cairul-workspace-plugin)
+- [`@cairul/xctest-plugin`](https://github.com/CairulMCP/cairul-xctest-plugin)
+- [`@cairul/xunit-plugin`](https://github.com/CairulMCP/cairul-xunit-plugin)
+- [`@cairul/youtrack-plugin`](https://github.com/CairulMCP/cairul-youtrack-plugin)

@@ -2,6 +2,8 @@ packages:
   - 'apps/mcp'
   - 'packages/*'
 
+linkWorkspacePackages: true
+
 allowBuilds:
   '@openapitools/openapi-generator-cli': false
 

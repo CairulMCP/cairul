@@ -98,8 +98,8 @@ function pack(directory, all) {
 }
 
 function publish(directory) {
-  if (!env.NODE_AUTH_TOKEN) throw new Error('Set the NPM_TOKEN secret in the npm GitHub environment.');
-  const access = env.NPM_ACCESS ?? 'restricted';
+  if (!env.NODE_AUTH_TOKEN) throw new Error('Set the NPM_TOKEN GitHub Actions secret.');
+  const access = env.NPM_ACCESS ?? 'public';
   if (!['public', 'restricted'].includes(access)) throw new Error('Set NPM_ACCESS to public or restricted.');
   const archives = readJson(join(directory, 'packages.json'));
   const selected = new Set(archives.map(({ name }) => name));

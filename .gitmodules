@@ -1,0 +1,144 @@
+[submodule "appium-plugin"]
+	path = packages/appium-plugin
+	url = https://github.com/CairulMCP/cairul-appium-plugin.git
+[submodule "asana-plugin"]
+	path = packages/asana-plugin
+	url = https://github.com/CairulMCP/cairul-asana-plugin.git
+[submodule "axe-plugin"]
+	path = packages/axe-plugin
+	url = https://github.com/CairulMCP/cairul-axe-plugin.git
+[submodule "azure-devops-plugin"]
+	path = packages/azure-devops-plugin
+	url = https://github.com/CairulMCP/cairul-azure-devops-plugin.git
+[submodule "bitbucket-plugin"]
+	path = packages/bitbucket-plugin
+	url = https://github.com/CairulMCP/cairul-bitbucket-plugin.git
+[submodule "clickup-plugin"]
+	path = packages/clickup-plugin
+	url = https://github.com/CairulMCP/cairul-clickup-plugin.git
+[submodule "coverage-plugin"]
+	path = packages/coverage-plugin
+	url = https://github.com/CairulMCP/cairul-coverage-plugin.git
+[submodule "ctest-plugin"]
+	path = packages/ctest-plugin
+	url = https://github.com/CairulMCP/cairul-ctest-plugin.git
+[submodule "cucumber-plugin"]
+	path = packages/cucumber-plugin
+	url = https://github.com/CairulMCP/cairul-cucumber-plugin.git
+[submodule "cypress-plugin"]
+	path = packages/cypress-plugin
+	url = https://github.com/CairulMCP/cairul-cypress-plugin.git
+[submodule "django-plugin"]
+	path = packages/django-plugin
+	url = https://github.com/CairulMCP/cairul-django-plugin.git
+[submodule "flutter-plugin"]
+	path = packages/flutter-plugin
+	url = https://github.com/CairulMCP/cairul-flutter-plugin.git
+[submodule "github-plugin"]
+	path = packages/github-plugin
+	url = https://github.com/CairulMCP/cairul-github-plugin.git
+[submodule "gitlab-plugin"]
+	path = packages/gitlab-plugin
+	url = https://github.com/CairulMCP/cairul-gitlab-plugin.git
+[submodule "go-test-plugin"]
+	path = packages/go-test-plugin
+	url = https://github.com/CairulMCP/cairul-go-test-plugin.git
+[submodule "googletest-plugin"]
+	path = packages/googletest-plugin
+	url = https://github.com/CairulMCP/cairul-googletest-plugin.git
+[submodule "gradle-plugin"]
+	path = packages/gradle-plugin
+	url = https://github.com/CairulMCP/cairul-gradle-plugin.git
+[submodule "jest-plugin"]
+	path = packages/jest-plugin
+	url = https://github.com/CairulMCP/cairul-jest-plugin.git
+[submodule "jira-plugin"]
+	path = packages/jira-plugin
+	url = https://github.com/CairulMCP/cairul-jira-plugin.git
+[submodule "junit-plugin"]
+	path = packages/junit-plugin
+	url = https://github.com/CairulMCP/cairul-junit-plugin.git
+[submodule "k6-plugin"]
+	path = packages/k6-plugin
+	url = https://github.com/CairulMCP/cairul-k6-plugin.git
+[submodule "linear-plugin"]
+	path = packages/linear-plugin
+	url = https://github.com/CairulMCP/cairul-linear-plugin.git
+[submodule "maven-plugin"]
+	path = packages/maven-plugin
+	url = https://github.com/CairulMCP/cairul-maven-plugin.git
+[submodule "minitest-plugin"]
+	path = packages/minitest-plugin
+	url = https://github.com/CairulMCP/cairul-minitest-plugin.git
+[submodule "mocha-plugin"]
+	path = packages/mocha-plugin
+	url = https://github.com/CairulMCP/cairul-mocha-plugin.git
+[submodule "monday-plugin"]
+	path = packages/monday-plugin
+	url = https://github.com/CairulMCP/cairul-monday-plugin.git
+[submodule "mstest-plugin"]
+	path = packages/mstest-plugin
+	url = https://github.com/CairulMCP/cairul-mstest-plugin.git
+[submodule "nextest-plugin"]
+	path = packages/nextest-plugin
+	url = https://github.com/CairulMCP/cairul-nextest-plugin.git
+[submodule "node-test-plugin"]
+	path = packages/node-test-plugin
+	url = https://github.com/CairulMCP/cairul-node-test-plugin.git
+[submodule "notion-plugin"]
+	path = packages/notion-plugin
+	url = https://github.com/CairulMCP/cairul-notion-plugin.git
+[submodule "nunit-plugin"]
+	path = packages/nunit-plugin
+	url = https://github.com/CairulMCP/cairul-nunit-plugin.git
+[submodule "pact-plugin"]
+	path = packages/pact-plugin
+	url = https://github.com/CairulMCP/cairul-pact-plugin.git
+[submodule "perforce-plugin"]
+	path = packages/perforce-plugin
+	url = https://github.com/CairulMCP/cairul-perforce-plugin.git
+[submodule "pest-plugin"]
+	path = packages/pest-plugin
+	url = https://github.com/CairulMCP/cairul-pest-plugin.git
+[submodule "phpunit-plugin"]
+	path = packages/phpunit-plugin
+	url = https://github.com/CairulMCP/cairul-phpunit-plugin.git
+[submodule "playwright-plugin"]
+	path = packages/playwright-plugin
+	url = https://github.com/CairulMCP/cairul-playwright-plugin.git
+[submodule "pytest-plugin"]
+	path = packages/pytest-plugin
+	url = https://github.com/CairulMCP/cairul-pytest-plugin.git
+[submodule "rspec-plugin"]
+	path = packages/rspec-plugin
+	url = https://github.com/CairulMCP/cairul-rspec-plugin.git
+[submodule "testng-plugin"]
+	path = packages/testng-plugin
+	url = https://github.com/CairulMCP/cairul-testng-plugin.git
+[submodule "trello-plugin"]
+	path = packages/trello-plugin
+	url = https://github.com/CairulMCP/cairul-trello-plugin.git
+[submodule "unittest-plugin"]
+	path = packages/unittest-plugin
+	url = https://github.com/CairulMCP/cairul-unittest-plugin.git
+[submodule "visual-plugin"]
+	path = packages/visual-plugin
+	url = https://github.com/CairulMCP/cairul-visual-plugin.git
+[submodule "vitest-plugin"]
+	path = packages/vitest-plugin
+	url = https://github.com/CairulMCP/cairul-vitest-plugin.git
+[submodule "webdriverio-plugin"]
+	path = packages/webdriverio-plugin
+	url = https://github.com/CairulMCP/cairul-webdriverio-plugin.git
+[submodule "workspace-plugin"]
+	path = packages/workspace-plugin
+	url = https://github.com/CairulMCP/cairul-workspace-plugin.git
+[submodule "xctest-plugin"]
+	path = packages/xctest-plugin
+	url = https://github.com/CairulMCP/cairul-xctest-plugin.git
+[submodule "xunit-plugin"]
+	path = packages/xunit-plugin
+	url = https://github.com/CairulMCP/cairul-xunit-plugin.git
+[submodule "youtrack-plugin"]
+	path = packages/youtrack-plugin
+	url = https://github.com/CairulMCP/cairul-youtrack-plugin.git

@@ -4,7 +4,14 @@ Cairul gives agents a plan and checks what needs to be true before work is compl
 
 ## Install from source
 
-Use Node.js 24 or newer and the pnpm version pinned in `package.json`. From the repository root, run:
+Clone with submodules and use Node.js 24 or newer and the pnpm version pinned in `package.json`.
+
+```sh
+git clone --recurse-submodules https://github.com/CairulMCP/cairul.git
+cd cairul
+```
+
+For an existing checkout, run `git submodule update --init --recursive`. Then install and build from the repository root.
 
 ```sh
 pnpm install --frozen-lockfile
@@ -153,8 +160,8 @@ Release Please opens a combined release PR from conventional commits on `main`. 
 
 Configure these values in the GitHub repository to enable releases.
 
-- `RELEASE_PLEASE_TOKEN` repository secret. Use a GitHub fine-grained PAT scoped to this repo, with Contents, Pull requests, and Issues read/write access. This lets CI run automatically when Release Please opens or updates its PR.
+- `RELEASE_PLEASE_TOKEN` GitHub Actions secret. Use a GitHub fine-grained PAT with Contents, Pull requests, and Issues read/write access on the repositories it releases. An organization secret can supply the credential to the core and plugin repositories. This lets CI run automatically when Release Please opens or updates its PR.
 - `NPM_TOKEN` organization secret available to the repository or a secret in its `npm` GitHub environment. Use an npm granular access token with publishing access to the `@cairul` org and bypass 2FA enabled.
-- `NPM_ACCESS` repository variable (optional). The default is `restricted`. Set it to `public` before the first release if the npm packages should be public. Restricted organization packages require npm private-package support.
+- `NPM_ACCESS` repository variable (optional). The default is `public`, so standalone integrations can install the shared plugin kit.
 
 Once the release PR is merged and its exact `main` commit passes CI, the release workflow publishes that commit's tagged packages. It packs workspace dependency references into registry-ready versions, publishes dependencies first, and skips versions already present in npm. To retry a failed publish after tags exist, rerun the failed job or dispatch the Release workflow from `main` with the original CI-approved commit SHA.
