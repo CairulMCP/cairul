@@ -1,0 +1,9 @@
+packages:
+  - 'apps/mcp'
+  - 'packages/*'
+
+allowBuilds:
+  '@openapitools/openapi-generator-cli': false
+
+overrides:
+  get-uri: ^8.0.2

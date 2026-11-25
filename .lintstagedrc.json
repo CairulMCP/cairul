@@ -1,0 +1,4 @@
+{
+  "*.{js,mjs,ts}": ["eslint --fix --no-warn-ignored", "prettier --write"],
+  "!(*.{js,mjs,ts})": "prettier --ignore-unknown --write"
+}

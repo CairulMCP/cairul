@@ -1,0 +1,7 @@
+{
+  "name": "cairul",
+  "version": "0.6.0",
+  "description": "Start and manage Cairul journeys from Codex.",
+  "skills": "./skills",
+  "mcpServers": "./mcp.json"
+}

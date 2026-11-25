@@ -1,0 +1,21 @@
+{
+  "name": "@cairul/sdk",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    "types": "./dist/generated/index.d.ts",
+    "default": "./dist/generated/index.js"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "lint": "tsc --noEmit --composite false",
+    "format": "prettier --write package.json tsconfig.json"
+  },
+  "license": "Apache-2.0",
+  "files": [
+    "dist/"
+  ],
+  "engines": {
+    "node": ">=24"
+  }
+}

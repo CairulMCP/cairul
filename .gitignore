@@ -1,0 +1,11 @@
+node_modules/
+.turbo/
+dist/
+*.tsbuildinfo
+.cairul/journeys/
+.kair0/journeys/
+.nauxt/journeys/
+.minerva/journeys/
+.env
+.env.*
+*.pem

@@ -1,0 +1,40 @@
+{
+  "name": "@cairul/mcp",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "cairul-mcp": "./bin/cairul-mcp.mjs"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "start": "node dist/index.js",
+    "test": "node --test",
+    "lint": "eslint bin src test",
+    "format": "prettier --write bin src test package.json tsconfig.json"
+  },
+  "dependencies": {
+    "@cairul/sdk": "workspace:*",
+    "@modelcontextprotocol/server": "^2.4.0",
+    "import-meta-resolve": "^4.2.0",
+    "yaml": "^2.9.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "^2.4.0",
+    "@types/node": "^24.19.2"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./plugin": {
+      "types": "./dist/plugin.d.ts"
+    }
+  },
+  "license": "Apache-2.0",
+  "files": [
+    "bin/cairul-mcp.mjs",
+    "dist/"
+  ],
+  "engines": {
+    "node": ">=24"
+  }
+}

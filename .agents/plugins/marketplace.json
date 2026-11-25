@@ -1,0 +1,20 @@
+{
+  "name": "cairul",
+  "interface": {
+    "displayName": "Cairul"
+  },
+  "plugins": [
+    {
+      "name": "cairul",
+      "source": {
+        "source": "local",
+        "path": "./plugins/cairul"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

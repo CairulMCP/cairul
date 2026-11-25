@@ -1,0 +1,5 @@
+{
+  "apps/mcp": "0.1.0",
+  "packages/plugin-kit": "0.1.0",
+  "packages/sdk": "0.1.0"
+}
