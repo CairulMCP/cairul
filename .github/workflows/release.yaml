@@ -109,6 +109,9 @@ jobs:
     if: needs.release.outputs.publish == 'true'
     runs-on: ubuntu-latest
     environment: npm
+    permissions:
+      contents: read
+      id-token: write
     env:
       HUSKY: '0'
     steps:
@@ -118,6 +121,13 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
           submodules: recursive
+      - name: Check out the release tooling
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: .cairul-release-tools
+          sparse-checkout: scripts
+          persist-credentials: false
       - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
@@ -127,9 +137,11 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
       - name: Pack packages tagged at the CI-verified commit
-        run: node scripts/npm-release.mjs pack "$RUNNER_TEMP/cairul-release"
+        env:
+          CAIRUL_RELEASE_SOURCE: ${{ github.workspace }}
+          CAIRUL_RELEASE_REPOSITORY: ${{ github.repository }}
+        run: node .cairul-release-tools/scripts/npm-release.mjs pack "$RUNNER_TEMP/cairul-release"
       - name: Publish to the npm registry
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_ACCESS: ${{ vars.NPM_ACCESS || 'public' }}
-        run: node scripts/npm-release.mjs publish "$RUNNER_TEMP/cairul-release"
+        run: node .cairul-release-tools/scripts/npm-release.mjs publish "$RUNNER_TEMP/cairul-release"

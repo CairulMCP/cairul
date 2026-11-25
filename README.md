@@ -163,7 +163,7 @@ Release Please opens separate MCP, SDK, and PDK release PRs from conventional co
 Configure these values in the GitHub repository to enable releases.
 
 - `RELEASE_PLEASE_TOKEN` GitHub Actions secret. Use a GitHub fine-grained PAT with Contents, Pull requests, and Issues read/write access on the repositories it releases. An organization secret can supply the credential to the core and plugin repositories. This lets CI run automatically when Release Please opens or updates its PR.
-- `NPM_TOKEN` organization secret available to the repository or a secret in its `npm` GitHub environment. Use an npm granular access token with publishing access to the `@cairul` org and bypass 2FA enabled.
+- npm trusted publishing for `@cairul/mcp`, `@cairul/pdk`, and `@cairul/sdk`. Configure `cairul-hq/cairul`, `release.yaml`, and environment `npm` for each package on npm. The release job authenticates via GitHub OIDC and attaches provenance.
 - `NPM_ACCESS` repository variable (optional). The default is `public`, so standalone integrations can install the shared PDK.
 
 Publish the SDK version on `main` before merging an MCP release PR. The MCP depends on that exact SDK version in its npm archive, and CI checks that the SDK is available. Publish the PDK before merging standalone plugin releases.
