@@ -88,6 +88,8 @@ Either file can use the `.yml` extension. A check with just `name` and `command`
 | `journey_abort`    | `journey_id`                  | Aborts an active journey.                                        |
 | `cairul_health`    | None                          | Reports MCP health and checks the backend when enabled.          |
 
+The local MCP saves each journey in `.cairul/journeys/<journey_id>/state.json`.
+
 ### Local plugins
 
 The Cairul Plugin Development Kit (PDK) provides helpers for defining checks, running tests, and reading reports. Plugin authors can install it as `@cairul/pdk`.
