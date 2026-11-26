@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
-import { lstat, mkdir, mkdtemp, rename, rm, writeFile } from 'node:fs/promises';
+import { lstat, mkdir, mkdtemp, readdir, readFile, rename, rm, rmdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { DatabaseSync } from 'node:sqlite';
+import { kill, pid } from 'node:process';
 import { z } from 'zod';
 import {
   cancelExecution,
@@ -94,7 +94,61 @@ const storedJourney = z.union([
 ]);
 type StoredJourney = z.infer<typeof storedJourney>;
 
-const database = (folder: string) => join(folder, 'journey.db');
+const stateFile = (folder: string) => join(folder, 'state.json');
+const serializeState = (state: StoredJourney) => `${JSON.stringify(state, null, 2)}\n`;
+const directoryOccupied = (error: unknown) =>
+  ['EEXIST', 'ENOTEMPTY'].includes((error as NodeJS.ErrnoException).code ?? '');
+
+async function removeEmptyLock(lock: string) {
+  await rmdir(lock).catch((error: unknown) => {
+    if (!isMissing(error) && !directoryOccupied(error)) throw error;
+  });
+}
+
+async function lockState(folder: string) {
+  const lock = join(folder, '.state-lock');
+  const staging = await mkdtemp(join(folder, '.locking-'));
+  const owner = `${pid}-${randomUUID()}`;
+  try {
+    await writeFile(join(staging, owner), '', { mode: 0o600 });
+    // Publish an already populated directory so an empty lock is always safe to replace.
+    for (;;) {
+      try {
+        await rename(staging, lock);
+        return { lock, draft: join(lock, owner) };
+      } catch (error) {
+        const code = (error as NodeJS.ErrnoException).code;
+        const denied = code === 'EPERM' || code === 'EACCES';
+        if (!directoryOccupied(error) && !(denied && (await isDirectory(lock)))) throw error;
+      }
+      const [currentOwner] = await readdir(lock).catch((error: unknown) => {
+        if (!isMissing(error)) throw error;
+        return [];
+      });
+      if (!currentOwner) {
+        await removeEmptyLock(lock);
+        continue;
+      }
+      const ownerPid = /^(\d+)-[a-f\d-]+$/.exec(currentOwner)?.[1];
+      if (ownerPid) {
+        try {
+          kill(Number(ownerPid), 0);
+        } catch (error) {
+          if ((error as NodeJS.ErrnoException).code === 'ESRCH') {
+            // Another request may already have taken over. Remove only the abandoned owner's file.
+            await rm(join(lock, currentOwner), { force: true });
+            await removeEmptyLock(lock);
+            continue;
+          }
+        }
+      }
+      throw new Error('Another request is updating this journey. Retry after it finishes.');
+    }
+  } catch (error) {
+    await rm(staging, { recursive: true, force: true });
+    throw error;
+  }
+}
 
 async function isDirectory(path: string) {
   const entry = await lstat(path).catch((error: unknown) => {
@@ -121,34 +175,27 @@ export async function startLocalJourney(
   let started: BackendStart | undefined;
   try {
     await Promise.all(config.files.map(({ name, source }) => writeFile(join(staging, name), source, { mode: 0o600 })));
-    const db = new DatabaseSync(database(staging));
-    let state: StoredJourney;
-    try {
-      db.exec('CREATE TABLE journey (id INTEGER PRIMARY KEY CHECK (id = 1), state TEXT NOT NULL)');
-      started = await remote?.start();
-      const { plan, actions, customized } = effectivePlan(config, started?.plan);
-      const now = started?.journey.created_at ?? new Date().toISOString();
-      state = {
-        ...input,
-        version: 2,
-        id: started && !customized ? started.journey_id : randomUUID(),
-        identity: { ...input.identity, id: started?.journey.identity_id ?? randomUUID() },
-        work_item_url: started?.journey.work_item_url ?? input.work_item_url,
-        capture_policy: started?.journey.capture_policy ?? input.capture_policy,
-        status: started?.journey.status ?? 'active',
-        created_at: now,
-        updated_at: started?.journey.updated_at ?? now,
-        phase: 0,
-        plan,
-        local_actions: actions,
-        results: {},
-        backend: started && { phases: started.plan.phases.map(({ name }) => name), status: started.journey },
-      };
-      advance(state);
-      db.prepare('INSERT INTO journey (id, state) VALUES (1, ?)').run(JSON.stringify(state));
-    } finally {
-      db.close();
-    }
+    started = await remote?.start();
+    const { plan, actions, customized } = effectivePlan(config, started?.plan);
+    const now = started?.journey.created_at ?? new Date().toISOString();
+    const state: StoredJourney = {
+      ...input,
+      version: 2,
+      id: started && !customized ? started.journey_id : randomUUID(),
+      identity: { ...input.identity, id: started?.journey.identity_id ?? randomUUID() },
+      work_item_url: started?.journey.work_item_url ?? input.work_item_url,
+      capture_policy: started?.journey.capture_policy ?? input.capture_policy,
+      status: started?.journey.status ?? 'active',
+      created_at: now,
+      updated_at: started?.journey.updated_at ?? now,
+      phase: 0,
+      plan,
+      local_actions: actions,
+      results: {},
+      backend: started && { phases: started.plan.phases.map(({ name }) => name), status: started.journey },
+    };
+    advance(state);
+    await writeFile(stateFile(staging), serializeState(state), { mode: 0o600 });
     await rename(staging, join(root, state.id));
     return {
       payload: { journey_id: state.id, plan: state.plan, journey: view(state) },
@@ -279,22 +326,16 @@ export async function updateLocalJourney(
   const root = join(await configDirectory(project), 'journeys');
   const folder = join(root, id);
   if (!(await isDirectory(root)) || !(await isDirectory(folder))) return;
-  const db = new DatabaseSync(database(folder), { open: false });
+  const path = stateFile(folder);
+  const { lock, draft } = await lockState(folder);
   try {
-    if (!(await lstat(database(folder))).isFile())
-      throw new Error('The local journey database must be a regular file.');
-    db.open();
-    try {
-      db.exec('BEGIN IMMEDIATE');
-    } catch (error) {
-      if ((error as { errcode?: number }).errcode === 5) {
-        throw new Error('Another request is updating this journey. Retry after it finishes.', { cause: error });
-      }
+    const entry = await lstat(path).catch((error: unknown) => {
+      if (isMissing(error)) throw new Error('The local journey is missing state.json.', { cause: error });
       throw error;
-    }
-    const row = db.prepare('SELECT state FROM journey WHERE id = 1').get();
-    const previous = String(row?.state);
-    const state = storedJourney.parse(JSON.parse(previous));
+    });
+    if (!entry.isFile()) throw new Error('The local journey state must be a regular file.');
+    const previous: unknown = JSON.parse(await readFile(path, 'utf8'));
+    const state = storedJourney.parse(previous);
     if (state.id !== id || state.phase >= state.plan.phases.length) throw new Error('Invalid local journey state.');
     let conflict: string | undefined;
     const afterCommit: (() => void)[] = [];
@@ -346,16 +387,16 @@ export async function updateLocalJourney(
       conflict =
         'Journey can complete only after every phase and check is satisfied. Call journey_status to run local checks.';
     }
-    const next = JSON.stringify(state);
-    if (next !== previous) {
+    if (JSON.stringify(state) !== JSON.stringify(previous)) {
       state.updated_at = new Date().toISOString();
-      db.prepare('UPDATE journey SET state = ? WHERE id = 1').run(JSON.stringify(state));
+      await writeFile(draft, serializeState(state));
+      await rename(draft, path);
     }
-    db.exec('COMMIT');
     for (const execute of afterCommit) execute();
     if (conflict) throw new Error(conflict);
     return { journey: view(state), backend: state.backend?.status };
   } finally {
-    if (db.isOpen) db.close();
+    await rm(draft, { force: true });
+    await removeEmptyLock(lock);
   }
 }

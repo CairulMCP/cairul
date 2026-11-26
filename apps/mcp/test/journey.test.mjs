@@ -2,18 +2,18 @@ import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import { once } from 'node:events';
-import { appendFile, mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { appendFile, mkdir, mkdtemp, readdir, readFile, rm, symlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { delimiter, join } from 'node:path';
 import { env, execPath } from 'node:process';
 import { createInterface } from 'node:readline';
-import { DatabaseSync } from 'node:sqlite';
 import { test } from 'node:test';
 import { setTimeout } from 'node:timers/promises';
 import { fileURLToPath, URL } from 'node:url';
 import { Client } from '@modelcontextprotocol/client';
 import { StdioClientTransport } from '@modelcontextprotocol/client/stdio';
 import { loadConfig } from '../dist/local-config.js';
+import { startLocalJourney, updateLocalJourney } from '../dist/local-journeys.js';
 import { getCheckRegistry } from '../dist/local-plugins.js';
 
 const apiBinary = env.CAIRUL_TEST_API_BIN;
@@ -87,6 +87,8 @@ test('local journeys pin YAML, run checks by phase, and resume from disk', { tim
   assert.deepEqual(started.plan.phases[1].checks[0].action, { type: 'local_command', kind: 'shell.command' });
   const journey = { journey_id: started.journey_id };
   const snapshot = join(config, 'journeys', started.journey_id);
+  const stateFile = join(snapshot, 'state.json');
+  assert.deepEqual((await readdir(snapshot)).sort(), ['checks.yml', 'plans.yaml', 'state.json']);
   assert.equal(await readFile(join(snapshot, 'checks.yml'), 'utf8'), checks);
   assert.equal(await readFile(join(snapshot, 'plans.yaml'), 'utf8'), plans);
   assert.equal((await client.callTool({ name: 'journey_complete', arguments: journey })).isError, true);
@@ -101,17 +103,15 @@ test('local journeys pin YAML, run checks by phase, and resume from disk', { tim
   assert.equal(blocked.incomplete_checks[0].last_result.detail, 'Exited with code 1.');
   await assert.rejects(readFile(join(project, 'final')), { code: 'ENOENT' });
   await client.close();
-  const db = new DatabaseSync(join(snapshot, 'journey.db'));
-  try {
-    const { local_actions, ...state } = JSON.parse(db.prepare('SELECT state FROM journey WHERE id = 1').get().state);
-    state.version = 1;
-    state.commands = Object.fromEntries(
-      Object.entries(local_actions).map(([id, action]) => [id, action.options.command])
-    );
-    db.prepare('UPDATE journey SET state = ? WHERE id = 1').run(JSON.stringify(state));
-  } finally {
-    db.close();
-  }
+  const { local_actions, ...state } = JSON.parse(await readFile(stateFile, 'utf8'));
+  assert.equal(state.id, journey.journey_id);
+  assert.equal(state.identity.session_id, 'local-session');
+  assert.equal(state.results[blocked.incomplete_checks[0].id].status, 'failed');
+  state.version = 1;
+  state.commands = Object.fromEntries(
+    Object.entries(local_actions).map(([id, action]) => [id, action.options.command])
+  );
+  await writeFile(stateFile, JSON.stringify(state));
   await Promise.all([
     writeFile(join(config, 'checks.yml'), 'changed after start'),
     writeFile(join(config, 'plans.yaml'), 'changed after start'),
@@ -125,7 +125,55 @@ test('local journeys pin YAML, run checks by phase, and resume from disk', { tim
   assert.equal(await readFile(join(project, 'final'), 'utf8'), '');
   assert.equal((await call('journey_complete', journey)).status, 'completed');
   assert.equal((await call('journey_status', journey)).status, 'completed');
+  const completed = JSON.parse(await readFile(stateFile, 'utf8'));
+  assert.equal(completed.status, 'completed');
+  assert.equal(completed.version, 2);
 });
+
+test(
+  'local journey updates exclude concurrent writers and recover an abandoned lock',
+  { timeout: 10000 },
+  async (t) => {
+    const project = await mkdtemp(join(tmpdir(), 'cairul-state-lock-'));
+    t.after(() => rm(project, { recursive: true, force: true }));
+    const registry = await getCheckRegistry(project);
+    const work_item_url = 'https://tracker.example/acme/42';
+    const { payload } = await startLocalJourney(project, await loadConfig(project, work_item_url, registry), {
+      work_item_url,
+      identity: { session_id: 'local-session', harness: 'test' },
+      capture_policy: { version: 1, mode: 'all' },
+    });
+    const id = payload.journey_id;
+    const folder = join(project, '.cairul', 'journeys', id);
+    const signal = new globalThis.AbortController().signal;
+    const entered = Promise.withResolvers();
+    const release = Promise.withResolvers();
+    const pending = updateLocalJourney(project, id, 'status', signal, async () => {
+      entered.resolve();
+      await release.promise;
+      return registry;
+    });
+    await Promise.race([entered.promise, pending]);
+    try {
+      await assert.rejects(
+        updateLocalJourney(project, id, 'abort', signal, () => registry),
+        /Another request is updating/
+      );
+    } finally {
+      release.resolve();
+      await pending;
+    }
+
+    const exited = spawn(execPath, ['-e', '']);
+    await once(exited, 'exit');
+    const stale = join(folder, '.state-lock');
+    await mkdir(stale);
+    await writeFile(join(stale, `${exited.pid}-${randomUUID()}`), '{"partial":');
+    const result = await updateLocalJourney(project, id, 'abort', signal, () => registry);
+    assert.equal(result.journey.status, 'aborted');
+    assert.deepEqual(await readdir(folder), ['state.json']);
+  }
+);
 
 test('check configuration rejects unknown kinds, bad references, and duplicate phase names', async (t) => {
   const project = await mkdtemp(join(tmpdir(), 'cairul-config-'));
@@ -349,7 +397,7 @@ test(
 );
 
 test(
-  'the MCP command configured by the plugin manages SQLite-backed journeys',
+  'the MCP command configured by the plugin manages backend-linked journeys',
   { timeout: 20000, skip: backendRequired },
   async (t) => {
     const temp = await mkdtemp(join(tmpdir(), 'cairul-journey-'));
@@ -461,6 +509,7 @@ test(
     assert.match(unsupported.content[0].text, /GitHub issue or pull request URL/);
 
     await api.close();
+    const { DatabaseSync } = await import('node:sqlite');
     const legacy = new DatabaseSync(database);
     try {
       legacy.exec(`
@@ -517,6 +566,7 @@ test(
   { timeout: 15000, skip: backendRequired },
   async (t) => {
     const folder = await mkdtemp(join(tmpdir(), 'cairul-legacy-'));
+    const { DatabaseSync } = await import('node:sqlite');
     const database = join(folder, 'legacy.db');
     let api;
     t.after(async () => {
